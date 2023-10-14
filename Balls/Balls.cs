@@ -41,7 +41,7 @@ public class Balls : MonoBehaviour
 
         if (collisionColor1 == ballsColor)
         {
-  
+
         }
     }
 
