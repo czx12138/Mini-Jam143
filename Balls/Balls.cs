@@ -4,28 +4,55 @@ using UnityEngine;
 
 public class Balls : MonoBehaviour
 {
-    List<Color> ballsColor = new List<Color>();
-    Color bColor;
+    private List<Color> defaultColors = new List<Color>();
+    public Color ballsColor;
     private SpriteRenderer spriteRenderer;
 
-    List<Rigidbody2D> ballCollision = new List<Rigidbody2D>();
+    private Color collisionColor1;
+    private Color collisionColor2;
+
+    public List<GameObject> recordBallsColor = new List<GameObject>();
     
 
     public void Start()
     {
-        ballsColor.Add(Color.red);
-        ballsColor.Add(Color.blue);
-        ballsColor.Add(Color.yellow);
-
-        int a = Random.Range(0, 3);
-        bColor = ballsColor[a];
-
-        GetComponent<SpriteRenderer>().color = bColor;
+        produceColorBall();
 
     }
-
     public void Update()
     {
 
     }
+
+    private void produceColorBall()
+    {
+        defaultColors.Add(Color.red);
+        defaultColors.Add(Color.blue);
+        defaultColors.Add(Color.yellow);
+
+        int a = Random.Range(0, 3);
+        ballsColor = defaultColors[a];
+
+        GetComponent<SpriteRenderer>().color = ballsColor;
+    }
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
+        collisionColor1 = collisionInfo.gameObject.GetComponent<SpriteRenderer>().color;
+
+        if (collisionColor1 == ballsColor)
+        {
+  
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collisionInfo)
+    {
+        collisionColor2 = collisionInfo.gameObject.GetComponent<SpriteRenderer>().color;
+
+        if (collisionColor2 == ballsColor)
+        {
+
+        }
+    }
+
 }
