@@ -25,7 +25,7 @@ public class TimerBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time -= 10* Time.deltaTime;
+        time -= Time.deltaTime;
         timer.SetValue(time);
 
         if(time < 0)

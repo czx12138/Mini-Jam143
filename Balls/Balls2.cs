@@ -21,6 +21,8 @@ public class Balls2 : MonoBehaviour
     private Color black = Color.black;
     #endregion
 
+    public TimerBoard timerBoard;
+
     public void Start()
     {
         produceColorBall();
@@ -35,6 +37,9 @@ public class Balls2 : MonoBehaviour
             GetComponent<SpriteRenderer>().color = upgradeColor;
             ballsColor1 = new Color(0.1f,0.3f,0.2f);
             ballsColor2 = upgradeColor;
+
+            timerBoard.UpdateScore(1);
+
             if (upgradeColor == black)
                 ballsColor1 = black;
         }
