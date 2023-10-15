@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerBoard : MonoBehaviour
 {
@@ -24,13 +25,24 @@ public class TimerBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
+        time -= 10* Time.deltaTime;
         timer.SetValue(time);
+
+        if(time < 0)
+        {
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % 3);
+            PlayerPrefs.SetInt("Score", scoreVal);
+        }
     }
 
     public void UpdateScore(int socreInput)
     {
         scoreVal += socreInput;
         score.SetText("Score: " + scoreVal.ToString());
+    }
+
+    public int returnScore()
+    {
+        return scoreVal;
     }
 }
