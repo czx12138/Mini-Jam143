@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
+    public ColorList2 colorList;
     public void Update()
     {
         circularMotion();
+        GetComponent<SpriteRenderer>().color = colorList.randColor[0];
     }
 
     private void circularMotion()

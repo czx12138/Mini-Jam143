@@ -16,4 +16,5 @@ public class Gravity : MonoBehaviour
         Vector2 force = direction.normalized * forceMagnitude;
         GetComponent<Rigidbody2D>().AddForce(force);
     }
+
 }
