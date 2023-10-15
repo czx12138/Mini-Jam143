@@ -9,8 +9,6 @@ public class PlayerShoot2 : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
-        { 
-            Instantiate(balls,transform.position, transform.rotation);
-        }
+            Instantiate(balls, transform.position, transform.rotation);
     }
 }
