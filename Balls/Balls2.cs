@@ -6,10 +6,13 @@ public class Balls2 : MonoBehaviour
 {
     public ColorList2 colorList;
 
+    public TimerBoard timerBoard;
+
     #region Color change
     private Color ballsColor1;//level 1 balls color
     private Color ballsColor2;//level 2 balls color
-    private Color upgradeColor;
+    private Color ballsColor3;//black ball
+    private Color upgradeColor = new Color(0.1f, 0.4f, 0.2f);
 
     private Color collisionColor;//Get from collision
     #endregion
@@ -21,27 +24,44 @@ public class Balls2 : MonoBehaviour
     private Color black = Color.black;
     #endregion
 
-    public TimerBoard timerBoard;
-
     public void Start()
     {
         produceColorBall();
     }
     public void Update()
     {
-        if (recordBalls.Count == 2)
+        if (recordBalls.Count == 2 && upgradeColor == new Color(0.1f, 0.4f, 0.2f))
         {
             GetUpgradeColor();
             Destroy(recordBalls[0]);
             Destroy(recordBalls[0]);
             GetComponent<SpriteRenderer>().color = upgradeColor;
-            ballsColor1 = new Color(0.1f,0.3f,0.2f);
+            ballsColor1 = new Color(0.1f, 0.3f, 0.2f);
             ballsColor2 = upgradeColor;
-
+            upgradeColor = purple;
             timerBoard.UpdateScore(1);
+        }
 
-            if (upgradeColor == black)
-                ballsColor1 = black;
+        if (recordBalls.Count == 2 && upgradeColor == purple)
+        {
+            if (upgradeColor == purple)
+            {
+                GetUpgradeColor();
+                Destroy(recordBalls[0]);
+                Destroy(recordBalls[0]);
+                GetComponent<SpriteRenderer>().color = upgradeColor;
+                ballsColor2 = upgradeColor;
+                ballsColor3 = black;
+                timerBoard.UpdateScore(3);
+            }
+        }
+
+        if (recordBalls.Count == 2 && upgradeColor == black)
+        {
+            Destroy(recordBalls[0]);
+            Destroy(recordBalls[0]);
+            Destroy(gameObject);
+            timerBoard.UpdateScore(10);
         }
     }
 
@@ -80,6 +100,9 @@ public class Balls2 : MonoBehaviour
             recordBalls.Add(collisionInfo.gameObject);
 
         SecondLevelBallCheck1(collisionInfo);
+
+        if (collisionColor == ballsColor3)
+            recordBalls.Add(collisionInfo.gameObject);
     }
 
     private void SecondLevelBallCheck1(Collision2D collisionInfo)
@@ -183,6 +206,9 @@ public class Balls2 : MonoBehaviour
             recordBalls.Remove(collisionInfo.gameObject);
 
         SecondLevelBallCheck2(collisionInfo);
+
+        if (collisionColor == ballsColor3)
+            recordBalls.Remove(collisionInfo.gameObject);
     }
     #endregion
 }
