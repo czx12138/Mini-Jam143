@@ -15,11 +15,11 @@ public class Player2 : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            gameObject.transform.Rotate(0f, 0f, 0.4f);
+            gameObject.transform.Rotate(0f, 0f, 0.6f);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            gameObject.transform.Rotate(0f, 0f, -0.4f);
+            gameObject.transform.Rotate(0f, 0f, -0.6f);
         }
     }
 }
