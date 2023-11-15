@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 151155575}
-  mass: 200
+  mass: 150
 --- !u!212 &37974084
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 151155575}
-  mass: 200
+  mass: 100
 --- !u!212 &1083103981
 SpriteRenderer:
   m_ObjectHideFlags: 0
